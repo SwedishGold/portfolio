@@ -18,7 +18,7 @@ Eget initiativ med verksamhetsförståelse, produktinriktning, källstruktur och
 
 ## Verifiering
 
-Kod- och testgranskning 2026-10-27 verifierade lokal sökning, källkort och API-vägar. Tio Python-tester passerade. Granskningen var inte en ny fysisk Android- eller avatarprovning.
+Omkörda kontroller 2026-10-27: 10 Node-tester och 10 Python-tester passerade med syntetiska testdata. Android hade 8 godkända JVM-tester per byggvariant (debug, pairing, release); debug-APK byggdes utan privat signering. Offlinedemon visade källsvar i webbläsare utan externa anrop. Release-lint gav 19 varningar och inga fel. Detta var inte fysisk Android- eller avatarprovning.
 
 ## Avgränsning
 
