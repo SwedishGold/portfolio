@@ -46,11 +46,29 @@ class PortfolioTests(unittest.TestCase):
         cls.html = (ROOT / 'index.html').read_text(encoding='utf-8')
         cls.page = Page(cls.html)
 
-    def test_all_seven_requested_and_selected_cases_present(self):
+    def test_all_six_retained_cases_present(self):
         self.assertEqual({c['id'] for c in self.cases}, {
             'hope', 'museum', 'mellumo', 'codex-weekly',
-            'dust-lord', 'hermes-wrist', 'strawberrai'})
-        self.assertEqual(len(self.cases), 7)
+            'dust-lord', 'hermes-wrist'})
+        self.assertEqual(len(self.cases), 6)
+
+    def test_retired_case_is_absent_from_current_publication(self):
+        expected = {c['id'] + '.md' for c in self.cases}
+        self.assertEqual({p.name for p in (ROOT / 'cases').glob('*.md')}, expected)
+        for path in [ROOT / 'cases.json', ROOT / 'index.html', ROOT / 'README.md']:
+            self.assertNotIn('strawberrai', path.read_text(encoding='utf-8').lower())
+
+    def test_recruiter_entry_points_are_prioritized(self):
+        self.assertEqual([c['id'] for c in self.cases[:2]], ['hope', 'dust-lord'])
+        self.assertIn('lokala AI-lösningar', self.html)
+        self.assertIn('kunskapsbanker', self.html)
+
+    def test_external_targets_match_current_curated_work(self):
+        actual = {link for link in self.page.links if urlsplit(link).scheme}
+        self.assertEqual(actual, {
+            'https://github.com/SwedishGold/portfolio',
+            'https://github.com/SwedishGold/dustlord',
+            'https://www.linkedin.com/in/andreas-hillborgh-51581371/'})
 
     def test_unique_cases_and_html_ids(self):
         self.assertEqual(len({c['id'] for c in self.cases}), len(self.cases))
