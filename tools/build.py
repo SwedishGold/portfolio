@@ -23,8 +23,9 @@ def render_case(c, index):
 <h3>{e(c['title'])}</h3><p class="subtitle">{e(c['subtitle'])}</p>
 <p class="summary">{e(c['summary'])}</p>
 <div class="flow" aria-label="Förenklad arkitektur">{flow}</div><ul class="tech" aria-label="Teknik">{tech}</ul>
+{f'<div class="links">{links}</div>' if links else ''}
 <details><summary>Insats, teknik och verifiering</summary>{detail}<p class="limit"><strong>Avgränsning.</strong> {e(c['limits'])}</p><p lang="en" style="margin-top:18px">{e(c['english'])}</p>
-<div class="links">{links}<a href="cases/{e(c['id'])}.md">Läs case som Markdown</a></div></details></article>'''
+<div class="links"><a href="cases/{e(c['id'])}.md">Läs case som Markdown</a></div></details></article>'''
 
 
 def build_outputs(cases):
@@ -34,7 +35,7 @@ def build_outputs(cases):
 <html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Andreas Hillborgh: utvalda prototyper inom källbunden AI, interaktiva miljöer och hårdvaruintegration."><meta name="referrer" content="no-referrer"><title>Andreas Hillborgh — utvalda projekt</title><style>{CSS}</style></head><body>
 <a class="skip" href="#projekt">Till projekten</a><div class="page">
 <div class="top"><strong class="signature">Andreas Hillborgh</strong><nav aria-label="Snabblänkar"><a href="#english" lang="en">English summary</a> · <a href="https://github.com/SwedishGold/portfolio">GitHub</a></nav></div>
-<header class="hero"><div><p class="eyebrow">Utvalda projekt / AI-assisterad utveckling</p><h1>Från verkligt behov<br>till något som<br>går att prova.</h1></div><div class="intro"><p>Jag förenar erfarenhet från vården med ett praktiskt intresse för AI, kunskapsbanker och kreativa digitala miljöer.</p><p>Här visar jag vad jag bygger med AI-stöd — och är tydlig med vad som faktiskt har testats.</p><p class="small">Egna initiativ och prototyper. Inte en lista över färdiga kommersiella produkter.</p></div></header>
+<header class="hero"><div><p class="eyebrow">Utvalda projekt / AI-assisterad utveckling</p><h1>Från verkligt behov<br>till något som<br>går att prova.</h1></div><div class="intro"><p>Jag kombinerar erfarenhet från psykiatri och omsorg med AI-assisterad utveckling. Mitt särskilda intresse är lokala AI-lösningar, kunskapsbanker och integrationer.</p><p>Här visar jag vad jag bygger med AI-stöd — och är tydlig med vad som faktiskt har testats.</p><p class="small">Egna initiativ och prototyper. Inte en lista över färdiga kommersiella produkter.</p></div></header>
 <main><section id="projekt" aria-labelledby="projects-title"><div class="section-title"><h2 id="projects-title">Arbetsproven</h2><span>{len(cases)} utvalda case · problem / lösning / evidens</span></div><div class="grid">{cards}</div></section>
 <section class="method" id="arbetssatt"><div><p class="eyebrow">Så arbetar jag</p><h2>AI som byggpartner.<br>Ansvar för resultatet.</h2><p>Min styrka ligger i att formulera ett konkret behov, styra utvecklingen, prova lösningen och förbättra den utifrån vad som faktiskt händer. AI används för kod, analys och tester; det gör inte granskning eller egen förståelse mindre viktigt.</p></div><ol><li><strong>Avgränsa.</strong> Välj en användare, ett problem och ett testbart flöde.</li><li><strong>Bygg.</strong> Koppla samman befintliga verktyg och små, tydliga komponenter.</li><li><strong>Verifiera.</strong> Håll isär kodtest, integration, fysisk observation och användaracceptans.</li><li><strong>Var transparent.</strong> Visa begränsningar, källor och vad som återstår.</li></ol></section>
 <section class="english" id="english" lang="en"><h2>Selected work — in English</h2><p>I build AI-assisted prototypes around source-grounded knowledge, interactive experiences and hardware integrations. My background in care informs the problems I choose. The work below distinguishes implemented functionality, bounded test evidence and remaining limitations.</p><ul>{en}</ul></section></main>
@@ -43,7 +44,7 @@ def build_outputs(cases):
 
 **AI-assisterad utveckling · källbunden kunskap · kreativa upplevelser · integrationer**
 
-Jag kombinerar erfarenhet från vården med ett praktiskt intresse för att bygga användbara AI-lösningar. Jag använder AI som byggpartner och arbetar med behov, produktflöde, integration och verifiering. Projekten är egna initiativ i olika mognadsgrad — inte påståenden om färdiga produkter eller officiella kunduppdrag.
+Jag kombinerar erfarenhet från psykiatri och omsorg med ett särskilt intresse för lokala AI-lösningar, kunskapsbanker och integrationer. Jag använder AI som byggpartner och arbetar med behov, produktflöde, integration och verifiering. Projekten är egna initiativ i olika mognadsgrad — inte påståenden om färdiga produkter eller officiella kunduppdrag.
 
 [Öppna portföljen](https://swedishgold.github.io/portfolio/) · [English overview](#english) · [Avgränsning och attribution](NOTICE.md)
 
