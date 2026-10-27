@@ -1,0 +1,211 @@
+[
+  {
+    "id": "hope",
+    "title": "Hope",
+    "subtitle": "Från lokala dokument till svar med synliga källor",
+    "category": "Kunskapsstöd · webb · Android",
+    "summary": "En fristående prototyp som kombinerar lokal dokumentsökning, källkort och webb-/mobilgränssnitt. Frågan är inte bara om AI kan svara, utan om användaren kan kontrollera underlaget.",
+    "problem": "Viktig kunskap finns utspridd i dokument. Ett lättläst svar behöver gå att följa tillbaka till sin källa och säga ifrån när underlaget saknas.",
+    "approach": "Markdown-dokument indexeras och söks lokalt. En Node-baserad tjänst förmedlar resultat till webb och Android. Röst och avatar är separata presentationslager; en extern modell kan användas för syntes. Lokal sökning betyder därför inte att all behandling är lokal.",
+    "role": "Eget initiativ med verksamhetsförståelse, produktinriktning, källstruktur och iterativ återkoppling. Implementation och testarbete sker med AI-stöd; jag beskriver inte varje kodrad som handskriven.",
+    "tech": [
+      "Node.js",
+      "JavaScript",
+      "Markdown",
+      "Android",
+      "Python / TLS"
+    ],
+    "status": "Privat, fristående prototyp",
+    "evidence": "Kod- och testgranskning 2026-10-27 verifierade lokal sökning, källkort och API-vägar. Tio Python-tester passerade. Granskningen var inte en ny fysisk Android- eller avatarprovning.",
+    "limits": "Inte kliniskt beslutsstöd eller en produktionsleverans. Inte ett uppdrag från eller officiellt samarbete med Region Västernorrland eller KTH. Källkod, interna dokument och konfiguration delas inte i detta publika case.",
+    "flow": [
+      "Fråga",
+      "Lokal dokumenthämtning",
+      "Svar + källkort",
+      "Webb / Android"
+    ],
+    "english": "An independent, source-grounded knowledge prototype with local document retrieval, source cards and web/Android clients. External synthesis and speech are separate layers; this is not a clinical product.",
+    "links": []
+  },
+  {
+    "id": "museum",
+    "title": "Medan du är här",
+    "subtitle": "Ett museum där besökarens närvaro blir en del av verket",
+    "category": "Interaktiv konst · AI-assisterad utveckling",
+    "summary": "En rumslig installation i Minecraft med åtta sammanhängande zoner. Poesi, musik, bild och programmerat ljus möter besökaren genom personliga, flerspråkiga förlopp.",
+    "problem": "Hur går man från en konstnärlig idé om närvaro, tid och relationer till en sammanhängande upplevelse som fungerar för olika besökare och klienter?",
+    "approach": "En personlig välkomstvärd, språkval och tre språkanknutna böcker leder in i upplevelsen. Fem producerade språkeditioner kombineras med närvaro- och tidsstyrd logik. Java/Paper och Geyser/Floodgate förbinder dator- och mobilklienter. Innehållet är förproducerat och kodstyrt, inte fri LLM-konversation.",
+    "role": "Initiativtagare, kreativ projektledare och kurator. Jag har styrt riktning, promptning och urval samt provat upplevelsen. Efter mobilprov föreslog jag exempelvis att flytta finalens ljusträd in i rummets cirkel och anpassa skalan. Hermes omsatte riktningen i förslag, kod, medier och tekniska kontroller.",
+    "tech": [
+      "Minecraft / Paper",
+      "Java",
+      "Python",
+      "Geyser / Floodgate",
+      "Obsidian"
+    ],
+    "status": "Pågående interaktivt konstprojekt",
+    "evidence": "Dokumenterat användarprov 2026-10-22 omfattade dator, mobil och två samtidiga personliga guider. Publik serverdrift dokumenterades 25–26 oktober. För denna portfolio har projektkällor granskats; inga nya server- eller klientprov har körts.",
+    "limits": "Dagens tillgänglighet och aktuell mobilversionskompatibilitet är inte verifierade här. Två besökare är inte ett kapacitetstest. Detta är ett separat projekt, inte den äldre Minecraft/MCP-prototypen. Konceptflödet nedan är inte en skärmbild av museet.",
+    "flow": [
+      "Språkval",
+      "Personlig välkomstvärd",
+      "Rum / närvaro",
+      "Poesi, ljud och ljus"
+    ],
+    "english": "While You Are Here is an interactive Minecraft art installation: eight connected zones, five authored language editions and personal visitor sequences. I lead the concept, curation and iteration; AI assists implementation. The runtime uses programmed logic, not free-form LLM conversation.",
+    "links": []
+  },
+  {
+    "id": "mellumo",
+    "title": "Mellumo",
+    "subtitle": "Visuellt vardagsstöd, från Androidplan till liten handledsskärm",
+    "category": "Produktdesign · Android · embedded",
+    "summary": "En digital vardagskompis som visar en aktivitet i taget och låter användaren själv markera KLAR. Den runda pixelfiguren Mint knyter ihop planeringsappen och klockans upplevelse.",
+    "problem": "Ett vardagsstöd behöver vara begripligt i stunden. Planering, förhandsvisning och överföring måste också gå att förstå utan att användaren behöver tänka som en utvecklare.",
+    "approach": "Native Android/Java planerar aktiviteter och visar en lokal förhandsvisning med delad C++-logik via JNI. Guidad Bluetoothöverföring följs av återläsning och separat tidsaktivering. Klockprototypen använder ESP-IDF och LVGL på Waveshare ESP32-S3-Touch-AMOLED-2.06. Sparat i mobilen skiljs från bekräftat på klockan.",
+    "role": "Produktinitiativ, prioriteringar och konkreta UX-krav i AI-assisterad utveckling. Jag har styrt mot aktivitetskort, fokuserade val, samma Mint-identitet och tydliga nästa steg i stället för utvecklarorienterade formulär.",
+    "tech": [
+      "Android / Java",
+      "C++ / JNI",
+      "ESP32-S3",
+      "ESP-IDF / LVGL",
+      "Bluetooth"
+    ],
+    "status": "Fysiskt prövad prototyp, inte färdig produkt",
+    "evidence": "Ett dokumenterat vuxenprov omfattar fem sammanhängande aktiviteter med scener, hörbart tal, KLAR-övergångar och återgång till Hem. Sparat testunderlag för appversion 0.5.23 redovisar 427 tester utan testfel och 99 lintvarningar. Dessa tester har inte körts om för portföljen.",
+    "limits": "Batteriuthållighet, fysisk säkerhet, självständig användbarhet och validering med avsedda användare återstår. En historisk överförings-/journalavvikelse är inte slututredd. Inga medicinska effekter, haptik eller live-LLM i klockan utlovas. Inga privata planer, bilder eller enhetsfiler publiceras.",
+    "flow": [
+      "Planera + förhandsvisa",
+      "Granska",
+      "Överför + återläs",
+      "Separat aktivering"
+    ],
+    "english": "A visual everyday-support prototype combining a native Android planner with an ESP32-S3 wearable. It uses shared C++ preview logic and explicit transfer/readback boundaries. Documented adult trials are not evidence of clinical benefit, battery endurance or readiness for intended users.",
+    "links": []
+  },
+  {
+    "id": "codex-weekly",
+    "title": "Codex Weekly / ESP32",
+    "subtitle": "Gör en digital veckokvot synlig på skrivbordet",
+    "category": "Embedded · lokal integration · informationsdesign",
+    "summary": "En liten enhet med LCD och åtta RGB-lysdioder visar Codex veckokvot. Två programmerbara knappar växlar vy eller begär en ny avläsning; aktuell tid och nästa återställning har egna vyer.",
+    "problem": "En användningsgräns behöver vara lätt att uppfatta utan ännu en öppen kontrollpanel. Samtidigt måste skärmen skilja färska uppgifter från gamla eller okända värden.",
+    "approach": "En lokal Python-brygga läser Codex app-server och väljer det uttryckliga sjudagarsfönstret. C/ESP-IDF, LVGL och leverantörens BSP driver Waveshare ESP32-C6-LCD-0.85. Kontoinloggningen stannar på datorn. Statuskontrakt kontrolleras, gammalt underlag visas som offline och BLE erbjuder separat skrivskyddad status.",
+    "role": "Ett eget AI-assisterat hårdvaruprojekt kring ett tydligt informationsbehov: kvot, tid, återställning och felåterkoppling ska gå att skilja åt. Utvecklingen dokumenterar kandidater, testgränser och verifiering i stället för att bara visa en lyckad skärm.",
+    "tech": [
+      "ESP32-C6",
+      "C / ESP-IDF",
+      "LVGL",
+      "Python",
+      "Read-only BLE"
+    ],
+    "status": "Dokumenterad D5-hårdvaruprototyp",
+    "evidence": "D5 har dokumenterad fysisk funktionskontroll och byteverifierad firmwareavläsning från augusti 2026. Under portföljgranskningen kompilerades och kördes tre fristående C-testprogram med godkänt resultat; 13 D5 C/H-källhashar matchade manifestet. Ett av testprogrammen gäller en äldre referensmodell, inte D5:s renderer.",
+    "limits": "Procenten följer leverantörens rapporterade heltal, inte beräknade token eller påhittade decimaler. Ingen aktuell kvot eller ny hårdvarustatus har lästs. Transportkryptering och produktionshärdning återstår. Ursprunglig källkod och firmware ingår inte i det publika caset.",
+    "flow": [
+      "Codex app-server",
+      "Lokal statusbrygga",
+      "Validerat kontrakt",
+      "LCD / LED / BLE"
+    ],
+    "english": "A desktop ESP32-C6 device for Codex weekly quota, current time and reset time. It preserves the provider’s integer precision and explicitly handles stale data. Three isolated C test programs were rerun; historical physical acceptance is separate from today’s device state.",
+    "links": []
+  },
+  {
+    "id": "dust-lord",
+    "title": "Dust Lord",
+    "subtitle": "En fysisk robot med händelsestyrd personlighet",
+    "category": "Automation · integration · smarta hem",
+    "summary": "Ett agentlager runt en robotdammsugare: statusförändringar väljer beteende och repliker som spelas via en extern högtalare, utan att flasha robotens firmware.",
+    "problem": "Hur kan ett vardagsföremål reagera begripligt och karaktärsfullt på vad det faktiskt gör, utan att röstupplevelsen blandas ihop med robotens styrning?",
+    "approach": "Robotstatus går genom en watcher och en tillstånds-/beteendemodell till ett repliksbibliotek. TTS och Cast sköter extern uppläsning. Fysisk styrning har en separat RPC-väg och kräver uttrycklig avsikt.",
+    "role": "Personakoncept, önskat beteende och integration utvecklade med AI-stöd. Ett konkret experiment i att förena kreativa beslut med befintliga API:er, lokala skript och testning.",
+    "tech": [
+      "Python",
+      "Roborock RPC",
+      "TTS",
+      "Google Cast",
+      "macOS launchd"
+    ],
+    "status": "Publikt integrationsprojekt",
+    "evidence": "Två avgränsade offline-tester av repliksbiblioteket passerade vid granskningen 2026-10-27. GitHub CI verifierades för den granskade committen. Repot innehåller en publicerad demofilm.",
+    "limits": "Offline-testerna verifierar inte robotrörelse, nätverk, rösttjänst eller ljudåtergivning. Ingen ny fysisk körning gjordes för portföljen. Lösningen är anpassad till en lokal miljö.",
+    "flow": [
+      "Robotstatus",
+      "Händelse / beteende",
+      "Replik + TTS",
+      "Extern högtalare"
+    ],
+    "english": "A local smart-home experiment connecting robot events to a stateful persona, speech synthesis and an external Cast speaker, without replacing the robot firmware.",
+    "links": [
+      {
+        "label": "Kod och befintlig demo",
+        "url": "https://github.com/SwedishGold/dustlord"
+      }
+    ]
+  },
+  {
+    "id": "hermes-wrist",
+    "title": "Hermes Wrist",
+    "subtitle": "En avgränsad mobilkontroll för en lokal AI-agent",
+    "category": "Android · säkra integrationer",
+    "summary": "En Android-kontrollpanel som visar agentstatus och förmedlar ett begränsat urval handlingar till en Mac. Klockan är en kompletterande notifieringsyta, inte en fristående AI-klient.",
+    "problem": "Få överblick och hantera tydliga åtgärder utan att skicka privata samtal eller ge en mobilklient en fri kommandokanal.",
+    "approach": "En Python-brygga filtrerar statusfält. Certifikatpinning och autentisering skyddar den privata Wi-Fi-vägen; USB/localhost är separat reservväg. Kommandon använder en fast tillåten lista, replay-skydd och begränsad anropsfrekvens.",
+    "role": "Produktflöde, prioritering av vad som ska synas och krav på begränsad åtkomst, genom iterativ AI-assisterad implementation och återkoppling.",
+    "tech": [
+      "Android",
+      "Python",
+      "Pinned TLS",
+      "SQLite",
+      "macOS"
+    ],
+    "status": "Privat integrationsprototyp",
+    "evidence": "53 utvalda tester för status- och kommandobryggor passerade i en isolerad testmiljö 2026-10-27.",
+    "limits": "Detta är inte en ny verifiering av installerad telefon, notifieringsspegling eller klocka. Modellsimuleringar ersätter inte fysisk testning. Ingen APK, pairinginformation eller maskinspecifik konfiguration publiceras här.",
+    "flow": [
+      "Agentstatus",
+      "Filtrerad lokal brygga",
+      "Android",
+      "Notifiering / klocka"
+    ],
+    "english": "An Android control surface for a local agent, with filtered status, pinned TLS and allowlisted actions. Selected bridge tests are separate from physical phone/watch verification.",
+    "links": []
+  },
+  {
+    "id": "strawberrai",
+    "title": "StrawberrAI",
+    "subtitle": "En tydlig webbidentitet för praktiska AI-idéer",
+    "category": "Webb · visuell kommunikation",
+    "summary": "En responsiv statisk webbplats med en sammanhållen visuell identitet. Ett kompletterande arbetsprov i att göra ett tekniskt ämne lättare att förstå.",
+    "problem": "Tekniska möjligheter behöver en begriplig ingång, tydlig struktur och ett visuellt uttryck som håller ihop på både dator och mobil.",
+    "approach": "HTML, CSS och webbmedia bygger en publicerad presentationssida. Den är ett gränssnitts-/kommunikationsprov, inte ett bevis för en färdig AI-tjänst i bakgrunden.",
+    "role": "Koncept och visuell riktning med AI-assisterad implementation och webbläsargranskning.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "Responsiv design",
+      "GitHub Pages"
+    ],
+    "status": "Publik statisk webbplats",
+    "evidence": "Startsidan inspekterades i 1280 respektive 390 pixlars viewport 2026-10-27. Alla sju bilder laddade och ingen horisontell överrinning observerades i dessa vyer.",
+    "limits": "Ingen AI-backend eller meddelandeleverans verifierades. Webbplatsens marknadsbudskap är inte en uppmätt effekt eller dokumenterad kundleverans.",
+    "flow": [
+      "Innehåll",
+      "Visuell identitet",
+      "Responsiv HTML / CSS",
+      "Publicerad sida"
+    ],
+    "english": "A responsive static website and visual-communication sample. It demonstrates presentation and implementation, not an operational AI backend.",
+    "links": [
+      {
+        "label": "Webbplats",
+        "url": "https://swedishgold.github.io/strawberrai-website/"
+      },
+      {
+        "label": "Kod",
+        "url": "https://github.com/SwedishGold/strawberrai-website"
+      }
+    ]
+  }
+]
