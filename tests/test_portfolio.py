@@ -32,7 +32,9 @@ class Page(HTMLParser):
         if tag == 'a' and 'href' in attrs:
             self.links.append(attrs['href'])
         if tag in {'img', 'script', 'iframe', 'video', 'audio', 'source', 'link'}:
-            self.resources.append(attrs.get('src', attrs.get('href', '')))
+            for key in ['src', 'href', 'poster']:
+                if key in attrs:
+                    self.resources.append(attrs[key])
         self.scripts += tag == 'script'
         self.details += tag == 'details'
         if 'lang' in attrs:
@@ -84,7 +86,12 @@ class PortfolioTests(unittest.TestCase):
                 self.assertGreater(len(c['tech']), 0)
 
     def test_no_automatic_remote_resources_or_script(self):
-        self.assertEqual(self.page.resources, [])
+        self.assertEqual(self.page.resources, [
+            'assets/museum-language-demo-poster.jpg',
+            'assets/museum-language-demo.mp4'])
+        for resource in self.page.resources:
+            self.assertFalse(urlsplit(resource).scheme)
+            self.assertTrue((ROOT / resource).is_file())
         self.assertEqual(self.page.scripts, 0)
         self.assertNotRegex(self.html, r'(?i)@import|url\s*\(')
 
