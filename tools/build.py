@@ -4,12 +4,52 @@ from pathlib import Path
 from html import escape
 import argparse
 import json
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 CSS = """
 :root{--ivory:#FAF9F5;--white:#FFFFFF;--slate:#141413;--clay:#D97757;--olive:#788C5D;--rust:#B04A3F;--oat:#E3DACC;--gray-150:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--border:1.5px solid var(--gray-300);--radius-panel:12px;--radius-row:8px;--radius-pill:999px;--serif:ui-serif,Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--ivory);color:var(--gray-700);font-family:var(--sans);line-height:1.65;padding:28px 28px 64px}a{color:var(--slate);text-underline-offset:4px}a:hover{color:var(--rust)}:focus-visible{outline:3px solid var(--clay);outline-offset:5px}.page{max-width:1120px;margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;border-bottom:var(--border);padding-bottom:20px;gap:20px}.top a{font:12px var(--mono)}.signature{font-size:15px;letter-spacing:.03em;color:var(--slate)}.eyebrow,.tag,.number{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase}.eyebrow{margin:0 0 18px}.hero{padding:68px 0 56px;display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:end}h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;color:var(--slate)}h1{font-size:clamp(42px,5.4vw,70px);line-height:1.03;margin:0}.intro{font-size:17px;max-width:38em}.intro p{margin:0 0 16px}.intro .small{font-size:13px}.section-title{display:flex;justify-content:space-between;align-items:baseline;gap:20px;border-top:var(--border);padding-top:24px;margin-bottom:24px}.section-title h2{font-size:30px;margin:0}.section-title span{font:11px var(--mono)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.card{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:28px;min-width:0}.card.primary{border-top:4px solid var(--clay)}.card header{display:flex;justify-content:space-between;gap:16px;align-items:baseline}.number{color:var(--gray-700)}.tag{background:var(--gray-150);border-radius:var(--radius-pill);padding:5px 9px;line-height:1.5;font-size:10px;letter-spacing:.02em}.card h3{font-size:32px;margin:20px 0 4px;line-height:1.18}.subtitle{font-size:15px;margin:0 0 18px;color:var(--gray-700)}.summary{margin:0 0 22px}.tech{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:18px 0 0}.tech li{font:11px var(--mono);border:1px solid var(--gray-300);border-radius:4px;padding:5px 7px}.flow{display:flex;align-items:stretch;gap:5px;margin:24px 0}.flow span{flex:1;padding:9px 5px;background:var(--gray-150);font:10px/1.45 var(--mono);text-align:center;overflow-wrap:anywhere;display:flex;align-items:center;justify-content:center}.flow b{align-self:center;font-size:12px;font-weight:400}details{border-top:var(--border);margin-top:24px;padding-top:14px}summary{cursor:pointer;color:var(--slate);font-size:13px;font-weight:600;padding:6px 0}details h4{font-size:13px;margin:22px 0 4px}details p{font-size:14px;margin:0}.limit{border-left:3px solid var(--clay);padding:10px 14px;background:var(--ivory);margin-top:18px!important}.links{display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;font-size:13px}.method{margin:64px 0 32px;display:grid;grid-template-columns:1fr 1fr;gap:40px;border-top:var(--border);padding-top:30px}.method h2{font-size:30px;margin:0 0 14px}.method p{font-size:15px;max-width:42em}.method ol{padding-left:20px}.method li{margin-bottom:12px}.english{border-top:var(--border);padding-top:26px}.english h2{font-size:28px;margin:0}.english p{max-width:70ch;font-size:14px}.english ul{columns:2;gap:34px;padding-left:18px;font-size:13px}.english li{break-inside:avoid;margin-bottom:14px}footer{margin-top:38px;border-top:var(--border);padding-top:18px;display:flex;justify-content:space-between;gap:20px;font-size:12px}.skip{position:absolute;top:-80px}.skip:focus{top:12px;background:var(--white);padding:12px}code{font-family:var(--mono);font-size:.9em}p,li{overflow-wrap:break-word}@media(max-width:760px){body{padding:20px 18px 40px}.hero{grid-template-columns:1fr;gap:28px;padding:42px 0}.grid{grid-template-columns:1fr}.card{padding:22px}.flow{display:grid;grid-template-columns:1fr 1fr;gap:6px;counter-reset:step}.flow b{display:none}.flow span{min-height:44px;overflow-wrap:normal;counter-increment:step;justify-content:flex-start;text-align:left;padding:10px;font-size:11px}.flow span::before{content:counter(step);font-size:10px;margin-right:10px;color:var(--gray-700)}.method{grid-template-columns:1fr;gap:20px}.english ul{columns:1}.section-title{align-items:flex-start;flex-direction:column;gap:8px}footer{flex-direction:column;gap:8px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{padding:0}.hero{padding:24px 0}.grid{display:block}.card{break-inside:avoid;margin-bottom:20px}details{display:block}details>*{display:block}.top,.skip{display:none}a{color:var(--slate)}}
 """
+
+
+CSS += """
+.recorded-demo{margin:26px 0;padding-top:20px;border-top:var(--border)}.recorded-demo h4{font:600 17px/1.35 var(--sans);margin:0 0 12px;color:var(--slate)}.recorded-demo video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#0c111a;border-radius:var(--radius-row)}.demo-caption{font-size:13px;line-height:1.6}.demo-caption p{margin:12px 0}.demo-caption .demo-english{color:var(--gray-700)}.demo-link{display:inline-block;margin-top:5px;font-size:13px}
+"""
+
+
+def validate_demo(demo):
+    for key, suffix in [('video', 'mp4'), ('poster', 'jpg')]:
+        if not re.fullmatch(r'assets/[a-z0-9][a-z0-9-]*\.' + suffix, demo[key]):
+            raise ValueError('Demo media must use a plain local assets/ path')
+
+
+def render_demo(c):
+    demo = c.get('demo')
+    if not demo:
+        return ''
+    validate_demo(demo)
+    e = escape
+    return f'''<figure class="recorded-demo" id="{e(c['id'])}-film">
+<h4>{e(demo['title'])}</h4>
+<video id="{e(c['id'])}-video" controls playsinline preload="none" poster="{e(demo['poster'], quote=True)}" width="1920" height="1080" aria-label="Språktest i museet / Museum language demo">
+<source src="{e(demo['video'], quote=True)}" type="video/mp4">
+<a href="{e(demo['video'], quote=True)}">Öppna filmen / Open video</a></video>
+<figcaption class="demo-caption"><p>{e(demo['caption'])}</p><p class="demo-english" lang="en">{e(demo['english'])}</p></figcaption>
+<a class="demo-link" href="{e(demo['video'], quote=True)}">Öppna filmen separat / Open video ↗</a></figure>'''
+
+
+def demo_markdown(c, prefix=''):
+    demo = c.get('demo')
+    if not demo:
+        return ''
+    validate_demo(demo)
+    url = f'https://swedishgold.github.io/portfolio/#{c["id"]}-film'
+    return (f'## {demo["title"]}\n\n'
+            f'[![Spela museets språkdemonstration]({prefix}{demo["poster"]})]({url})\n\n'
+            f'[Spela filmen / Watch the demo]({url}) · '
+            f'[Öppna MP4](https://swedishgold.github.io/portfolio/{demo["video"]})\n\n'
+            f'{demo["caption"]}\n\n{demo["english"]}\n\n')
 
 
 def render_case(c, index):
@@ -22,6 +62,7 @@ def render_case(c, index):
 <header><span class="number">{index+1:02d}</span><span class="tag">{e(c['status'])}</span></header>
 <h3>{e(c['title'])}</h3><p class="subtitle">{e(c['subtitle'])}</p>
 <p class="summary">{e(c['summary'])}</p>
+{render_demo(c)}
 <div class="flow" aria-label="Förenklad arkitektur">{flow}</div><ul class="tech" aria-label="Teknik">{tech}</ul>
 {f'<div class="links">{links}</div>' if links else ''}
 <details><summary>Insats, teknik och verifiering</summary>{detail}<p class="limit"><strong>Avgränsning.</strong> {e(c['limits'])}</p><p lang="en" style="margin-top:18px">{e(c['english'])}</p>
@@ -55,6 +96,7 @@ Jag kombinerar erfarenhet från psykiatri och omsorg med ett särskilt intresse 
 '''
     for c in cases:
         readme += f'| [{c["title"]}](cases/{c["id"]}.md) | {c["subtitle"]} | {c["status"]} |\n'
+    readme += '\n' + ''.join(demo_markdown(c) for c in cases if c.get('demo'))
     readme += '''
 ## Hur jag arbetar
 
@@ -85,6 +127,7 @@ I build AI-assisted prototypes around source-grounded knowledge, interactive env
     outputs = {'index.html': page, 'README.md': readme}
     for c in cases:
         text = f'# {c["title"]}\n\n**{c["subtitle"]}**\n\n{c["summary"]}\n\n'
+        text += demo_markdown(c, '../')
         for key, title in [('problem','Behov'),('approach','Lösning'),('role','Min insats'),('evidence','Verifiering'),('limits','Avgränsning')]:
             text += f'## {title}\n\n{c[key]}\n\n'
         text += '## Förenklat flöde\n\n```text\n' + ' → '.join(c['flow']) + '\n```\n\n'

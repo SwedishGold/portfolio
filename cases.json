@@ -121,6 +121,13 @@
     "title": "Medan du är här",
     "subtitle": "Ett museum där besökarens närvaro blir en del av verket",
     "category": "Interaktiv konst · AI-assisterad utveckling",
+    "demo": {
+      "video": "assets/museum-language-demo.mp4",
+      "poster": "assets/museum-language-demo-poster.jpg",
+      "title": "Ett museum. Fem språk.",
+      "caption": "Verklig mobilinspelning från 30 oktober 2026: svenska, engelska, spanska, brasiliansk portugisiska och franska. Mitt pågående studieprojekt vid Umeå universitet. Guiden använder förproducerat tal och programmerade flöden. Filmen visar språkbyten, inte en fullständig museivandring eller språkgranskning.",
+      "english": "A real mobile recording of the guide in five languages, from my ongoing study project at Umeå University. It shows language switching with authored speech and programmed sequences, not free-form LLM conversation or a complete museum tour. Press play to start; nothing plays automatically."
+    },
     "summary": "En rumslig installation i Minecraft med åtta sammanhängande zoner. Poesi, musik, bild och programmerat ljus möter besökaren genom personliga, flerspråkiga förlopp.",
     "problem": "Hur går man från en konstnärlig idé om närvaro, tid och relationer till en sammanhängande upplevelse som fungerar för olika besökare och klienter?",
     "approach": "En personlig välkomstvärd, språkval och tre språkanknutna böcker leder in i upplevelsen. Fem producerade språkeditioner kombineras med närvaro- och tidsstyrd logik. Java/Paper och Geyser/Floodgate förbinder dator- och mobilklienter. Innehållet är förproducerat och kodstyrt, inte fri LLM-konversation.",
